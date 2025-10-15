@@ -1,10 +1,13 @@
 # Project:movie-new
 # Author:alirezaghaderi
 
+import os
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-DATABASE_URL = f"sqlite+aiosqlite:///{BASE_DIR}/test.db"
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    f"sqlite+aiosqlite:///{Path(__file__).resolve().parent.parent}/test.db"
+)
 
 APP_TITLE = "Movies"
 APP_DESCRIPTION = "Movie management API"
