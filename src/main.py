@@ -5,11 +5,9 @@ import uvicorn
 from fastapi import FastAPI
 from sqlalchemy.ext.asyncio import create_async_engine
 from src.models.movie import Base
-from src.services.routers import movies, stats
-
-DATABASE_URL = "sqlite+aiosqlite:///./test.db"
-
-engine = create_async_engine(DATABASE_URL, echo=True)
+from src.services.routers.movies import router as movies
+from src.services.routers.stats import router as stats
+from src.db.database import engine, Base
 
 app = FastAPI(
     title="Movies",
@@ -27,6 +25,7 @@ async def health_check():
 async def on_startup():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+
 
 if __name__ == "__main__":
     uvicorn.run("src.main:app", host="127.0.0.1", port=8000, reload=True)
