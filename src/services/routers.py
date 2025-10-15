@@ -6,15 +6,10 @@ from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.db.database import get_db
 from src.logic.movie_logic import MovieLogic
+from src.schemas.movie import MovieCreate, MovieUpdate
 
 movies = APIRouter(prefix="/movies", tags=["Movies"])
 stats = APIRouter(prefix="/stats", tags=["Stats"])
-
-class MovieCreate(BaseModel):
-    title: str
-    genre: str | None = None
-    release_year: int | None = None
-    watched: bool = False
 
 @movies.get("/", summary="Get all movies")
 async def get_movies(db: AsyncSession = Depends(get_db)):
