@@ -7,14 +7,11 @@ WORKDIR /app
 
 RUN pip install poetry
 
-pyproject.toml و poetry.lock
+COPY . /app
 
-COPY pyproject.toml poetry.lock* /app/
+COPY pyproject.toml poetry.lock ./app/
 
 RUN poetry install --no-root --no-interaction
-
-
-COPY . /app
 
 EXPOSE 8000
 

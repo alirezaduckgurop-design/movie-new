@@ -15,7 +15,6 @@ class MovieStatus(str, enum.Enum):
 
 class Movie(Base):
     __tablename__ = "movies"
-
     movie_uuid = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
     title = Column(String, nullable=False)
     genre = Column(String, nullable=True)  
