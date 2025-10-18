@@ -25,11 +25,10 @@ class MovieUpdate(MovieBase):
     watched: Optional[bool] = None
 
 class MovieOut(MovieBase):
-    id: str
+    movie_uuid: str  
     status: MovieStatus
     rating: Optional[int] = None
     notes: Optional[str] = None
 
     class Config:
-        from_attributes = True  
-
+        from_attributes = True

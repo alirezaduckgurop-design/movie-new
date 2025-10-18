@@ -1,5 +1,5 @@
-#Project:movie-new
-#author:alirezaghaderi
+# Project: movie-new
+# Author: alirezaghaderi
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -46,4 +46,4 @@ async def delete_movie(movie_uuid: str, db: AsyncSession = Depends(get_db)):
     deleted = await logic.delete_movie(movie_uuid)
     if not deleted:
         raise HTTPException(status_code=404, detail="Movie not found")
-    return {"message": "Movie deleted"}
+    return {"message": "Movie deleted successfully"}

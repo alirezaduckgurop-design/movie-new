@@ -1,13 +1,13 @@
-#Project:movie-new
-#author:alirezaghaderi
+# Project:movie-new
+# Author:alirezaghaderi
 
 import uvicorn
 from fastapi import FastAPI
-from sqlalchemy.ext.asyncio import create_async_engine
 from src.models.movie import Base
 from src.services.routers.movies import router as movies
 from src.services.routers.stats import router as stats
-from src.db.database import engine, Base
+from src.db.database import engine
+import asyncio
 
 app = FastAPI(
     title="Movies",
@@ -21,10 +21,14 @@ app.include_router(stats)
 async def health_check():
     return {"status": "ok"}
 
-@app.on_event("startup")
-async def on_startup():
+async def init_db():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+
+
+@app.on_event("startup")
+async def on_startup():
+    await init_db()
 
 
 if __name__ == "__main__":
