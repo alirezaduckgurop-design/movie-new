@@ -5,7 +5,7 @@ from uuid import UUID
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-DATABASE_URL = "sqlite+aiosqlite:///C:/Users/Administrator/Desktop/movie-new/movies.db"
+DATABASE_URL = "sqlite+aiosqlite:///C:/Users/Stokkadeh_Nouri/Desktop/ghaderi/movie-new/movies.db"
 
 engine = create_async_engine(DATABASE_URL, echo=True, future=True)
 

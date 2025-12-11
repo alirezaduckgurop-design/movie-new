@@ -6,7 +6,7 @@ from pathlib import Path
 
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    f"sqlite+aiosqlite:///{Path(__file__).resolve().parent.parent}/test.db"
+    f"sqlite+aiosqlite:///{Path(__file__).resolve().parent.parent}/movies.db"
 )
 
 APP_TITLE = "Movies"

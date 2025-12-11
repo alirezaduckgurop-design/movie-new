@@ -27,9 +27,9 @@ async def add(self, movie: Movie):
 async def update(self, movie_obj: Movie, data: dict):
     for key, value in data.items():
         setattr(movie_obj, key, value)
-        await self.db.commit()
-        await self.db.refresh(movie_obj)
-        return movie_obj
+    await self.db.commit()
+    await self.db.refresh(movie_obj)
+    return movie_obj
 
 async def delete(self, movie_obj: Movie):
     await self.db.delete(movie_obj)
